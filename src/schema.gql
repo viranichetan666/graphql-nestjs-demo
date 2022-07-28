@@ -1,0 +1,86 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  """id"""
+  id: ID!
+
+  """name"""
+  name: String!
+
+  """email"""
+  email: String!
+
+  """token"""
+  token: String!
+}
+
+type PostUser {
+  """id"""
+  id: ID!
+
+  """name"""
+  name: String!
+
+  """email"""
+  email: String!
+}
+
+type PostEntity {
+  """id"""
+  id: ID!
+
+  """title"""
+  title: String!
+
+  """image"""
+  image: String!
+
+  """description"""
+  description: String!
+
+  """user"""
+  user: PostUser!
+}
+
+type PaginatedPostEntity {
+  """posts"""
+  posts: [PostEntity!]!
+
+  """total"""
+  total: Int!
+}
+
+type Query {
+  login(object: LoginInput!): UserEntity
+  posts(object: PaginationInput!): PaginatedPostEntity!
+  myPosts(object: PaginationInput!): PaginatedPostEntity!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input PaginationInput {
+  page: Int!
+  limit: Int!
+}
+
+type Mutation {
+  register(object: RegisterInput!): UserEntity
+  create(object: PostInput!): PostEntity!
+}
+
+input RegisterInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+input PostInput {
+  title: String!
+  description: String!
+  image: String!
+}
